@@ -1,29 +1,18 @@
 <script lang="ts">
 	import { login, logout, user } from '$lib/stores/auth';
-	import { fetchEvents } from '$src/integration/calendar';
 	import Icon from '@iconify/svelte';
-	import Modal from '$lib/components/Modal.svelte';
-	import AddEvent from '$lib/components/AddEvent.svelte';
-
-	let showAddModal = $state(false);
+	import { toggleAddEventModal } from '$lib/stores/local';
 
 	const handleAuth = async () => {
 		if ($user) {
 			await logout();
 		} else {
-			//TODO: On login fetch events and show them in calendar
-
 			await login();
-			await fetchEvents();
 		}
-	};
-
-	const toggleAddEventModal = () => {
-		showAddModal = !showAddModal;
 	};
 </script>
 
-<header class="">
+<header class="mt-2">
 	<nav
 		class="mx-auto flex h-12 w-full max-w-7xl flex-row items-center justify-between rounded-full bg-white px-3 shadow-lg"
 	>
@@ -50,7 +39,3 @@
 		</button>
 	</nav>
 </header>
-
-<Modal bind:show={showAddModal}>
-	<AddEvent onCancel={() => toggleAddEventModal()} onSubmit={(data: any) => console.log(data)} />
-</Modal>

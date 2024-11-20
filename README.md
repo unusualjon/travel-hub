@@ -14,8 +14,8 @@ Travel Hub Host is a tend to be modern web application that helps users plan and
   - Secure user sessions
 
 - **Calendar Integration**
-  - Google Calendar API integration
   - Synchronized event management
+  - Event add
 
 ### Technologies Used
 

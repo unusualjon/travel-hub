@@ -1,13 +1,15 @@
 <script lang="ts">
-	const { onCancel, onSubmit } = $props();
+	import type { EventType } from '$lib/utils/types';
 
-	const event = $state({
+	const { onCancel, onSubmit }: { onCancel: Function; onSubmit: Function } = $props();
+
+	const event = $state<EventType>({
 		title: '',
 		description: '',
-		startDate: '',
-		endDate: '',
+		start: '',
+		end: '',
 		location: '',
-		maxParticipants: ''
+		maxParticipants: 0
 	});
 
 	let error = $state('');
@@ -59,7 +61,7 @@
 					<input
 						type="date"
 						id="startDate"
-						bind:value={event.startDate}
+						bind:value={event.start}
 						class="w-full rounded-md border px-3 py-2 focus:ring-2 focus:ring-blue-500"
 						required
 					/>
@@ -71,7 +73,7 @@
 					<input
 						type="date"
 						id="endDate"
-						bind:value={event.endDate}
+						bind:value={event.end}
 						class="w-full rounded-md border px-3 py-2 focus:ring-2 focus:ring-blue-500"
 						required
 					/>

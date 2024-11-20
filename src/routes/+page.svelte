@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { initCalendar } from '$src/integration/calendar';
+	import { initCalendar } from '$src/integration/calendar.svelte';
+	import { user } from '$src/lib/stores/auth';
+	import { loadEvents } from '$src/lib/utils/tools';
 
 	let calendarRef: HTMLElement;
 
@@ -7,6 +9,10 @@
 		if (calendarRef) {
 			const calendar = initCalendar(calendarRef);
 			calendar?.render();
+
+			if ($user) {
+				loadEvents();
+			}
 		}
 	});
 </script>
